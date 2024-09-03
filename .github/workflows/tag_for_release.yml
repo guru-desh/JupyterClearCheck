@@ -29,6 +29,11 @@ jobs:
       - name: Install dependencies
         run: pdm install
 
+      - name: Configure Git
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
       - name: Bump version and create tag
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit --tag
