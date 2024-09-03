@@ -52,6 +52,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Bump version to {new_version}"
           branch: "bump-version-${{ github.event.inputs['bump-type'] }}"
+          base: main
           title: "Bump version to {new_version}"
           body: "This PR bumps the version to {new_version}."
           labels: "automated PR"
