@@ -19,4 +19,4 @@ jobs:
 
       - name: Build and Test
         run: |
-          ${{ matrix.os == 'windows-latest' && 'build_and_test.cmd' || './build_and_test.sh' }}
+          ${{ matrix.os == 'windows-latest' && '.\build_and_test.cmd' || './build_and_test.sh' }}
