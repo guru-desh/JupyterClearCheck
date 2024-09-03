@@ -31,7 +31,7 @@ jobs:
 
       - name: Bump version and create tag
         run: |
-          pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit -m "Bump version to {new_version}" --tag
+          pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit --tag
 
       - name: Push changes to branch
         run: |
