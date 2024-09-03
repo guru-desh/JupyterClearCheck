@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: "3.9"
 
+      - name: Install dependencies
+        run: pdm install
+
       - name: Bump version and create tag
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit -m "Bump version to {new_version}" --tag
