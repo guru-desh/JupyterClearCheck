@@ -61,3 +61,5 @@ clean = "pyclean ."
 test = "pytest --cov src"
 lint_and_format = { composite = ["_lint", "_format"] }
 check = { composite = ["_lint_check", "_format_check", "_mypy"] }
+
+bump-version = "pdm bump"
