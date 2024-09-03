@@ -26,26 +26,19 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install dependencies
-        run: pdm install
-
-      - name: Bump version
-        run: pdm run bump-version ${{ github.event.inputs['bump-type'] }}
-
-      - name: Commit changes and create a tag
+      - name: Bump version and create tag
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git commit -am "Bump version to $(pdm version)"
-          git tag v$(pdm version)
-          git push origin bump-version-${{ github.event.inputs['bump-type'] }}
-          git push origin v$(pdm version)
+          pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit -m "Bump version to {new_version}" --tag
+
+      - name: Push changes to branch
+        run: |
+          git push origin HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: "Bump version to $(pdm version)"
+          commit-message: "Bump version to {new_version}"
           branch: "bump-version-${{ github.event.inputs['bump-type'] }}"
-          title: "Bump version to $(pdm version)"
-          body: "This PR bumps the version to $(pdm version) and tags the commit."
+          title: "Bump version to {new_version}"
+          body: "This PR bumps the version to {new_version}."
           labels: "automated PR"
