@@ -2,7 +2,8 @@
 setlocal enabledelayedexpansion
 
 python -m pip install --quiet pdm
+pdm install
 pdm run lint_and_format
-pdm run pytest
+pdm run test
 
 endlocal
