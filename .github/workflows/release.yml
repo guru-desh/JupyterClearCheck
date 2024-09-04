@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  publish:
+  pypi-publish:
     runs-on: ubuntu-latest
     environment: release
     permissions:
