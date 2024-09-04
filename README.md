@@ -37,3 +37,30 @@ options:
 ```
 
 The notebook parameter is required and should be the path to the Jupyter Notebook file.
+
+## Contributing
+
+We welcome contributions! Thank you in advance for your help. Feel free to submit a pull request or open an issue.
+
+### Getting Started for Development
+
+We use Python 3.9 and PDM for dependency management. To get started, install Python 3.9 and then install PDM using pip.
+
+```bash
+pip install pdm
+```
+
+Once this step is done, PDM can be used to run commands related to the development of this package.
+
+- Install dependencies: `pdm install`
+- Run linting and formatting: `pdm run lint_and_format`
+- Checking linting, formatting, and type annotations: `pdm run check`
+- Run tests: `pdm run test`
+- Build package: `pdm build`
+
+#### Running CI pipeline locally
+
+The CI pipeline can be run locally using the following scripts:
+
+- Windows: `./build_and_test.sh`
+- Linux/MacOS: `./build_and_test.cmd.`
