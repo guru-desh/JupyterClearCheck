@@ -8,6 +8,9 @@ readme = "README.md"
 license = { text = "3" }
 dependencies = ["nbformat>=5.10.4"]
 
+[project.scripts]
+jupyterclearcheck = "jupyterclearcheck.__main__:main"
+
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
