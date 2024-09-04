@@ -26,7 +26,8 @@ def check_notebook_outputs(notebook_path: NotebookPath) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Check a Jupyter Notebook for output cells."
+        prog="jupyterclearcheck",
+        description="Check a Jupyter Notebook for output cells.",
     )
     parser.add_argument(
         "--notebook", type=Path, help="Path to the Jupyter Notebook file", required=True
