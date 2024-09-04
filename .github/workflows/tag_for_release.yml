@@ -14,7 +14,7 @@ on:
           - patch
 
 jobs:
-  bump:
+  bump-version:
     runs-on: ubuntu-latest
 
     steps:
