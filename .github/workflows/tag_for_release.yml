@@ -1,4 +1,4 @@
-name: Bump version and Create PR with version tag
+name: Bump version and Create PR
 
 on:
   workflow_dispatch:
