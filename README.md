@@ -19,3 +19,21 @@ This package is available on PyPI and can be installed using pip.
 ```bash
 pip install JupyterClearCheck
 ```
+
+## Usage
+
+You can run the command via `jupyterclearcheck` or `python -m jupyterclearcheck`.
+
+```bash
+$ jupyterclearcheck --help
+
+usage: jupyterclearcheck [-h] --notebook NOTEBOOK
+
+Check a Jupyter Notebook for output cells.
+
+options:
+  -h, --help           show this help message and exit
+  --notebook NOTEBOOK  Path to the Jupyter Notebook file
+```
+
+The notebook parameter is required and should be the path to the Jupyter Notebook file.
