@@ -1,4 +1,4 @@
-name: Bump version and Create PR with version tag
+name: Bump version and Create PR
 
 on:
   workflow_dispatch:
@@ -21,31 +21,8 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4
 
-      - name: Set up PDM
-        uses: pdm-project/setup-pdm@v4
-        with:
-          python-version: "3.9"
-
-      - name: Install dependencies
-        run: pdm install
-
-      - name: Bump version
-        run: pdm run bump-version ${{ github.event.inputs['bump-type'] }}
-
-      - name: Commit changes and create a tag
+      - name: Run Release Script
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git commit -am "Bump version to $(pdm version)"
-          git tag v$(pdm version)
-          git push origin bump-version-${{ github.event.inputs['bump-type'] }}
-          git push origin v$(pdm version)
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: "Bump version to $(pdm version)"
-          branch: "bump-version-${{ github.event.inputs['bump-type'] }}"
-          title: "Bump version to $(pdm version)"
-          body: "This PR bumps the version to $(pdm version) and tags the commit."
-          labels: "automated PR"
+          ./.github/scripts/release.sh ${{ github.event.inputs['bump-type'] }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
