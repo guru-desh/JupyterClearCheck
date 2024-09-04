@@ -48,7 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push origin --force HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
+          git push --force
 
       - name: Create tag and push to remote
         run: |
