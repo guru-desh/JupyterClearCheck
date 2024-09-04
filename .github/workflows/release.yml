@@ -25,8 +25,5 @@ jobs:
         run: pdm install --prod
 
       - name: Build and Publish to PyPI
-        env:
-          PDM_PUBLISH_USERNAME: ${{ secrets.PDM_PUBLISH_USERNAME }}
-          PDM_PUBLISH_PASSWORD: ${{ secrets.PDM_PUBLISH_PASSWORD }}
         run: |
           pdm publish --repository testpypi
