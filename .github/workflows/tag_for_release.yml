@@ -40,19 +40,25 @@ jobs:
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit --tag
 
+      - name: Capture new version
+        id: get_version
+        run: |
+          VERSION=$(pdm show --version)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Push changes to branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push origin --force HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
+          git push origin HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Bump version to {new_version}"
+          commit-message: "Bump version to ${{ env.VERSION }}"
           branch: "bump-version-${{ github.event.inputs['bump-type'] }}"
-          base: main
-          title: "Bump version to {new_version}"
-          body: "This PR bumps the version to {new_version}."
+          base: main # Ensure the PR targets the main branch
+          title: "Bump version to ${{ env.VERSION }}"
+          body: "This PR bumps the version to ${{ env.VERSION }}."
           labels: "automated PR"
