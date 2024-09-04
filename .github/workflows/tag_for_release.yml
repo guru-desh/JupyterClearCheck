@@ -36,9 +36,16 @@ jobs:
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
 
-      - name: Bump version and create tag
+      - name: Bump version and commit changes
         run: |
-          pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit --tag
+          pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit
+          git push origin HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
+
+      - name: Create Tag on Latest Commit
+        run: |
+          VERSION=$(pdm show --version)
+          git tag v$VERSION
+          git push origin v$VERSION
 
       - name: Capture new version
         id: get_version
@@ -46,20 +53,13 @@ jobs:
           VERSION=$(pdm show --version)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Push changes to branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin --force HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
-          git push origin --tags
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Bump version to ${{ env.VERSION }}"
           branch: "bump-version-${{ github.event.inputs['bump-type'] }}"
-          base: main # Ensure the PR targets the main branch
+          base: main
           title: "Bump version to ${{ env.VERSION }}"
           body: "This PR bumps the version to ${{ env.VERSION }}."
           labels: "automated PR"
