@@ -26,4 +26,4 @@ jobs:
 
       - name: Build and Publish to PyPI
         run: |
-          pdm publish --repository testpypi
+          pdm publish
