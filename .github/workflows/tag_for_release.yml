@@ -39,7 +39,7 @@ jobs:
       - name: Bump version and commit changes
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit
-          git push origin HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
+          git push origin --force HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
 
       - name: Create Tag on Latest Commit
         run: |
