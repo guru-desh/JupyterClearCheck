@@ -1,0 +1,28 @@
+name: Bump version and Create PR with Version Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump-type:
+        description: "Bump type"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Run Release Script
+        run: |
+          ./.github/scripts/release.sh ${{ github.event.inputs['bump-type'] }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
