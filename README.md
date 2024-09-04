@@ -64,3 +64,10 @@ The CI pipeline can be run locally using the following scripts:
 
 - Windows: `./build_and_test.sh`
 - Linux/MacOS: `./build_and_test.cmd.`
+
+## Future Work
+
+- [ ] Add shellcheck to lint bash scripts currently in use
+- [ ] Add pre-commit hook
+- [ ] Add markdown lint
+- [ ] Publish on conda-forge
