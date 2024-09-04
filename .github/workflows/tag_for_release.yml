@@ -36,39 +36,32 @@ jobs:
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
 
-      - name: Create and checkout branch for bumping version
-        run: |
-          git checkout -b bump-version-${{ github.event.inputs['bump-type'] }}
-
       - name: Bump version and commit changes
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit
-
-      - name: Push changes to branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push --set-upstream origin bump-version-${{ github.event.inputs['bump-type'] }}
-          git push --force
-
-      - name: Create tag and push to remote
-        run: |
-          VERSION=$(pdm show --version)
-          git tag v$VERSION
-          git push origin v$VERSION
 
       - name: Capture new version
         run: |
           VERSION=$(pdm show --version)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      - name: Create and checkout release branch
+        run: |
+          git checkout -b release/v${{ env.VERSION }}
+
+      - name: Push changes to release branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push --set-upstream origin release/v${{ env.VERSION }}
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Bump version to ${{ env.VERSION }}"
-          branch: "bump-version-${{ github.event.inputs['bump-type'] }}"
+          branch: "release/v${{ env.VERSION }}"
           base: main
-          title: "Bump version to ${{ env.VERSION }}"
-          body: "This PR bumps the version to ${{ env.VERSION }}."
+          title: "Release v${{ env.VERSION }}"
+          body: "This PR contains the release version bump to ${{ env.VERSION }}."
           labels: "automated PR"
