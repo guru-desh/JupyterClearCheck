@@ -44,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push origin HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
+          git push origin --force HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
 
       - name: Checkout the branch to ensure correct context
         run: |
