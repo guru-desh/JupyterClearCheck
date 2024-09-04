@@ -1,6 +1,6 @@
 [project]
 name = "JupyterClearCheck"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python CLI to check that a Jupyter Notebook's Outputs' have been cleared."
 authors = [{ name = "Gururaj Deshpande", email = "gurudesh@gatech.edu" }]
 requires-python = ">=3.9"
