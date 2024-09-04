@@ -36,6 +36,10 @@ jobs:
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
 
+      - name: Create and checkout release branch
+        run: |
+          git checkout -b release/v${{ env.VERSION }}
+
       - name: Bump version and commit changes
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit
@@ -44,10 +48,6 @@ jobs:
         run: |
           VERSION=$(pdm show --version)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-      - name: Create and checkout release branch
-        run: |
-          git checkout -b release/v${{ env.VERSION }}
 
       - name: Push changes to release branch
         env:
