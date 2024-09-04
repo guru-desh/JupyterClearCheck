@@ -39,16 +39,24 @@ jobs:
       - name: Bump version and commit changes
         run: |
           pdm run bump-version ${{ github.event.inputs['bump-type'] }} --commit
-          git push origin --force HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
 
-      - name: Create Tag on Latest Commit
+      - name: Push changes to branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push origin HEAD:bump-version-${{ github.event.inputs['bump-type'] }}
+
+      - name: Checkout the branch to ensure correct context
+        run: |
+          git checkout bump-version-${{ github.event.inputs['bump-type'] }}
+
+      - name: Create tag and push to remote
         run: |
           VERSION=$(pdm show --version)
           git tag v$VERSION
           git push origin v$VERSION
 
       - name: Capture new version
-        id: get_version
         run: |
           VERSION=$(pdm show --version)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
