@@ -6,6 +6,7 @@ authors = [{ name = "Gururaj Deshpande", email = "gurudesh@gatech.edu" }]
 requires-python = ">=3.9"
 readme = "README.md"
 license = { text = "MIT" }
+urls = { homepage = "https://github.com/guru-desh/JupyterClearCheck" }
 dependencies = ["nbformat>=5.10.4"]
 
 [project.scripts]
