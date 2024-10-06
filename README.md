@@ -70,4 +70,4 @@ The CI pipeline can be run locally using the following scripts:
 - [ ] Add shellcheck to lint bash scripts currently in use
 - [ ] Add pre-commit hook
 - [ ] Add markdown lint
-- [ ] Publish on conda-forge
+- [x] Publish on conda-forge
