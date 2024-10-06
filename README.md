@@ -1,6 +1,6 @@
 # JupyterClearCheck
 
-![Build Status](https://github.com/guru-desh/JupyterClearCheck/actions/workflows/ci.yml/badge.svg) ![License](https://img.shields.io/github/license/guru-desh/JupyterClearCheck) ![PyPI version](https://img.shields.io/pypi/v/JupyterClearCheck)
+![Build Status](https://github.com/guru-desh/JupyterClearCheck/actions/workflows/ci.yml/badge.svg) ![License](https://img.shields.io/github/license/guru-desh/JupyterClearCheck) ![PyPI version](https://img.shields.io/pypi/v/JupyterClearCheck) [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterclearcheck.svg)](https://anaconda.org/conda-forge/jupyterclearcheck) [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterclearcheck.svg)](https://anaconda.org/conda-forge/jupyterclearcheck)
 
 A Python CLI to check that a Jupyter Notebook's Outputs' have been cleared.
 
