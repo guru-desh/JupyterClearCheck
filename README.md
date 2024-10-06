@@ -1,6 +1,6 @@
 # JupyterClearCheck
 
-![Build Status](https://github.com/guru-desh/JupyterClearCheck/actions/workflows/ci.yml/badge.svg) ![License](https://img.shields.io/github/license/guru-desh/JupyterClearCheck) ![PyPI version](https://img.shields.io/pypi/v/JupyterClearCheck)
+![Build Status](https://github.com/guru-desh/JupyterClearCheck/actions/workflows/ci.yml/badge.svg) ![License](https://img.shields.io/github/license/guru-desh/JupyterClearCheck) ![PyPI version](https://img.shields.io/pypi/v/JupyterClearCheck) [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterclearcheck.svg)](https://anaconda.org/conda-forge/jupyterclearcheck) [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterclearcheck.svg)](https://anaconda.org/conda-forge/jupyterclearcheck)
 
 A Python CLI to check that a Jupyter Notebook's Outputs' have been cleared.
 
@@ -70,4 +70,4 @@ The CI pipeline can be run locally using the following scripts:
 - [ ] Add shellcheck to lint bash scripts currently in use
 - [ ] Add pre-commit hook
 - [ ] Add markdown lint
-- [ ] Publish on conda-forge
+- [x] Publish on conda-forge
